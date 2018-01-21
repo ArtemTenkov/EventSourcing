@@ -1,0 +1,13 @@
+C:\Users\artem\source\repos\Api\Application\bin\Debug\netstandard2.0\Application.deps.json
+C:\Users\artem\source\repos\Api\Application\bin\Debug\netstandard2.0\Application.dll
+C:\Users\artem\source\repos\Api\Application\bin\Debug\netstandard2.0\Application.pdb
+C:\Users\artem\source\repos\Api\Application\obj\Debug\netstandard2.0\Application.csproj.CoreCompileInputs.cache
+C:\Users\artem\source\repos\Api\Application\obj\Debug\netstandard2.0\Application.AssemblyInfoInputs.cache
+C:\Users\artem\source\repos\Api\Application\obj\Debug\netstandard2.0\Application.AssemblyInfo.cs
+C:\Users\artem\source\repos\Api\Application\obj\Debug\netstandard2.0\Application.dll
+C:\Users\artem\source\repos\Api\Application\obj\Debug\netstandard2.0\Application.pdb
+C:\Users\artem\source\repos\Api\Application\obj\Debug\netstandard2.0\Application.csprojResolveAssemblyReference.cache
+C:\Users\artem\source\repos\Api\Application\bin\Debug\netstandard2.0\Domain.User.dll
+C:\Users\artem\source\repos\Api\Application\bin\Debug\netstandard2.0\SharedKernel.dll
+C:\Users\artem\source\repos\Api\Application\bin\Debug\netstandard2.0\Domain.User.pdb
+C:\Users\artem\source\repos\Api\Application\bin\Debug\netstandard2.0\SharedKernel.pdb

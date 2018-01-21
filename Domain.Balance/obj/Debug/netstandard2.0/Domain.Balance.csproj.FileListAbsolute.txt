@@ -1,0 +1,11 @@
+C:\Users\artem\source\repos\Api\Domain.Balance\obj\Debug\netstandard2.0\Domain.Balance.csprojResolveAssemblyReference.cache
+C:\Users\artem\source\repos\Api\Domain.Balance\obj\Debug\netstandard2.0\Domain.Balance.csproj.CoreCompileInputs.cache
+C:\Users\artem\source\repos\Api\Domain.Balance\obj\Debug\netstandard2.0\Domain.Balance.AssemblyInfoInputs.cache
+C:\Users\artem\source\repos\Api\Domain.Balance\obj\Debug\netstandard2.0\Domain.Balance.AssemblyInfo.cs
+C:\Users\artem\source\repos\Api\Domain.Balance\bin\Debug\netstandard2.0\Domain.Balance.deps.json
+C:\Users\artem\source\repos\Api\Domain.Balance\bin\Debug\netstandard2.0\Domain.Balance.dll
+C:\Users\artem\source\repos\Api\Domain.Balance\bin\Debug\netstandard2.0\Domain.Balance.pdb
+C:\Users\artem\source\repos\Api\Domain.Balance\bin\Debug\netstandard2.0\SharedKernel.dll
+C:\Users\artem\source\repos\Api\Domain.Balance\bin\Debug\netstandard2.0\SharedKernel.pdb
+C:\Users\artem\source\repos\Api\Domain.Balance\obj\Debug\netstandard2.0\Domain.Balance.dll
+C:\Users\artem\source\repos\Api\Domain.Balance\obj\Debug\netstandard2.0\Domain.Balance.pdb

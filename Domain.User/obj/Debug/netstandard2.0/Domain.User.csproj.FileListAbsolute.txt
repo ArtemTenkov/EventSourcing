@@ -1,0 +1,11 @@
+C:\Users\artem\source\repos\Api\Domain.User\obj\Debug\netstandard2.0\Domain.User.csproj.CoreCompileInputs.cache
+C:\Users\artem\source\repos\Api\Domain.User\obj\Debug\netstandard2.0\Domain.User.AssemblyInfoInputs.cache
+C:\Users\artem\source\repos\Api\Domain.User\obj\Debug\netstandard2.0\Domain.User.AssemblyInfo.cs
+C:\Users\artem\source\repos\Api\Domain.User\bin\Debug\netstandard2.0\Domain.User.deps.json
+C:\Users\artem\source\repos\Api\Domain.User\bin\Debug\netstandard2.0\Domain.User.dll
+C:\Users\artem\source\repos\Api\Domain.User\bin\Debug\netstandard2.0\Domain.User.pdb
+C:\Users\artem\source\repos\Api\Domain.User\bin\Debug\netstandard2.0\SharedKernel.dll
+C:\Users\artem\source\repos\Api\Domain.User\bin\Debug\netstandard2.0\SharedKernel.pdb
+C:\Users\artem\source\repos\Api\Domain.User\obj\Debug\netstandard2.0\Domain.User.csprojResolveAssemblyReference.cache
+C:\Users\artem\source\repos\Api\Domain.User\obj\Debug\netstandard2.0\Domain.User.dll
+C:\Users\artem\source\repos\Api\Domain.User\obj\Debug\netstandard2.0\Domain.User.pdb

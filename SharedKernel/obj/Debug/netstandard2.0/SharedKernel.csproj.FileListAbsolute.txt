@@ -1,0 +1,9 @@
+C:\Users\artem\source\repos\Api\SharedKernel\bin\Debug\netstandard2.0\SharedKernel.deps.json
+C:\Users\artem\source\repos\Api\SharedKernel\bin\Debug\netstandard2.0\SharedKernel.dll
+C:\Users\artem\source\repos\Api\SharedKernel\obj\Debug\netstandard2.0\SharedKernel.csproj.CoreCompileInputs.cache
+C:\Users\artem\source\repos\Api\SharedKernel\obj\Debug\netstandard2.0\SharedKernel.AssemblyInfoInputs.cache
+C:\Users\artem\source\repos\Api\SharedKernel\obj\Debug\netstandard2.0\SharedKernel.AssemblyInfo.cs
+C:\Users\artem\source\repos\Api\SharedKernel\bin\Debug\netstandard2.0\SharedKernel.pdb
+C:\Users\artem\source\repos\Api\SharedKernel\obj\Debug\netstandard2.0\SharedKernel.dll
+C:\Users\artem\source\repos\Api\SharedKernel\obj\Debug\netstandard2.0\SharedKernel.pdb
+C:\Users\artem\source\repos\Api\SharedKernel\obj\Debug\netstandard2.0\SharedKernel.csprojResolveAssemblyReference.cache
