@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace SharedKernel
 {
-    public interface IRdbmsRepository
+    public interface IUserRepository
     {
         Task AddUser(Guid id, string firstName, string lastName);
         Task<UserDto> GetUser(string lastName);
