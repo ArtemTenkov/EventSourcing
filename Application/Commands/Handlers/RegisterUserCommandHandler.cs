@@ -8,20 +8,21 @@ namespace Application.Commands.Handlers
 {
     public class RegisterUserCommandHandler : AsyncRequestHandler<RegisterUser, RegisterUserResponse>
     {
-        private IEventRepository<UserRoot> _eventRepository { get; }
+        private IUserRepository _userRepository { get; }
         private UserFactory _userFactory { get; }
-        public RegisterUserCommandHandler(IEventRepository<UserRoot> eventRepository,
+        public RegisterUserCommandHandler(IUserRepository userRepository,
             UserFactory userFactory)
         {
-            _eventRepository = eventRepository;
+            _userRepository = userRepository;
             _userFactory = userFactory;
         }
         protected override async Task<RegisterUserResponse> HandleCore(RegisterUser request)
         {
             var user = _userFactory
                 .CreateNew(request.UserName, request.LastName, request.Position);
-            await _eventRepository.Save(user);
+            await _userRepository.AddUser(user.Id, user.UserName.Value, user.LastName.Value);
+
             return new RegisterUserResponse(string.Empty);
         }
-    }
+    }   
 }

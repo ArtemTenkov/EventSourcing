@@ -7,14 +7,14 @@ namespace Domain.User.Handlers
 {
     public class UserCreatedEventHandler : AsyncNotificationHandler<UserCreated>
     {
-        private IRdbmsRepository _rdbmsRepository;
-        public UserCreatedEventHandler(IRdbmsRepository rdbmsRepository)
+        private IEventRepository<UserRoot> _eventRepository;
+        public UserCreatedEventHandler(IEventRepository<UserRoot> eventRepository)
         {
-            _rdbmsRepository = rdbmsRepository;
+            _eventRepository = eventRepository;
         }
         protected override async Task HandleCore(UserCreated @event)
         {
-           await _rdbmsRepository.AddUser(@event.AggregateId, @event.UserName, @event.LastName);
+           //await _eventRepository.Save(new UserRoot(@event.AggregateId, @event.UserName, @event.LastName);
         }
     }
 }

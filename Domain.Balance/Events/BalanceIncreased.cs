@@ -6,8 +6,8 @@ namespace Domain.Balance.Events
 {
     public class BalanceIncreased : IDomainEvent
     {
-        Guid TransactionId { get; }
-        Amount Amount { get; }
+        public Guid TransactionId { get; }
+        public Amount Amount { get; }
         public BalanceIncreased(Guid transactionId, Amount amount)
         {
             TransactionId = transactionId;

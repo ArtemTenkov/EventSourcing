@@ -6,11 +6,11 @@ namespace Application.Commands
 {
     public class UpdateUserName : IRequest<bool>
     {
-        public Guid AggregateId { get; }
+        public Name LastName { get; }
         public Name Name { get; }
-        public UpdateUserName(Guid aggregateId, Name name)
+        public UpdateUserName(Name lastName, Name name)
         {
-            AggregateId = aggregateId;
+            LastName = lastName;
             Name = name;
         }
     }

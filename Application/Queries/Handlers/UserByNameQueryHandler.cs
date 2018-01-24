@@ -7,8 +7,8 @@ namespace Application.Queries.Handlers
 {
     public class UserByNameQueryHandler : AsyncRequestHandler<UserByNameQuery, UserDto>
     {
-        IRdbmsRepository _rdbmsRepository;
-        public UserByNameQueryHandler(IRdbmsRepository rdbmsRepository)
+        IUserRepository _rdbmsRepository;
+        public UserByNameQueryHandler(IUserRepository rdbmsRepository)
         {
             _rdbmsRepository = rdbmsRepository;
         }

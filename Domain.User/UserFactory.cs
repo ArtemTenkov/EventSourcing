@@ -1,13 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using SharedKernel.Domain;
 using SharedKernel.Enums;
+using SharedKernel.ValueObjects;
 
 namespace Domain.User
 {
-    public class UserFactory : IAggregateFactory<UserRoot>
+    public interface IUserFactory
     {
-        public AggregateRoot CreateNew(string userName, string lastName,
+        UserRoot CreateNew(string userName, string lastName,
+            PositionType position);
+        UserRoot Restore(Guid id, Name userName, Name lastName, PositionType position);
+    }
+    public class UserFactory : IUserFactory
+    {
+        public UserRoot CreateNew(string userName, string lastName,
             PositionType position)
         {
             var userAggregate = new UserRoot();
@@ -16,9 +22,10 @@ namespace Domain.User
             return userAggregate;
         }
 
-        public UserRoot Restore(Guid id, IEnumerable<object> events = null)
+        public UserRoot Restore(Guid id, Name userName, Name lastName, PositionType position)
         {
-            var aggregate = new UserRoot(id, new UserState(events));
+            var aggregate = new UserRoot(id);
+            //Do mapping here
             return aggregate;
         }
     }

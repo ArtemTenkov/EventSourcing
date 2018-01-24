@@ -14,6 +14,7 @@ using Infrastructure.EventSource;
 using Infrastructure.Models;
 using SharedKernel.Domain;
 using Infrastructure.EventSource.Decorators;
+using Infrastructure.Relational;
 
 namespace Api
 {
@@ -56,7 +57,7 @@ namespace Api
                     _.AddAllTypesOf(typeof(AsyncNotificationHandler<>));
 
                     config.For<EventSourcingContext>().Use<EventSourcingContext>();
-                    config.For<IRdbmsRepository>().Use<RdbmsRepository>();
+                    config.For<IUserRepository>().Use<UserRepository>();
                     //config.For<IAggregateFactory>().Use<UserFactory>();
 
                     _.AddAllTypesOf(typeof(IEventRepository<>));

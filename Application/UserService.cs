@@ -27,7 +27,7 @@ namespace Application
         {
             var user = await _mediator.Send(new UserByNameQuery(lastName));
             var updatedSuccesfully = 
-                await _mediator.Send(new UpdateUserName(user.Id, Name.Create(newUserName)));
+                await _mediator.Send(new UpdateUserName(user.LastName, Name.Create(newUserName)));
 
             return updatedSuccesfully;
         }

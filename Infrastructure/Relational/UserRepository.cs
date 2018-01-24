@@ -6,12 +6,12 @@ using System.Linq;
 using SharedKernel.DataObjects;
 using SharedKernel.ValueObjects;
 
-namespace Infrastructure.EventSource
+namespace Infrastructure.Relational
 {
-    public class RdbmsRepository : IRdbmsRepository
+    public class UserRepository : IUserRepository
     {
         protected QueryContext _dbContext;
-        public RdbmsRepository(QueryContext dbContext)
+        public UserRepository(QueryContext dbContext)
         {
             _dbContext = dbContext;
         }

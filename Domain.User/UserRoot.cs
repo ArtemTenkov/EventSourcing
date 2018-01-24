@@ -8,21 +8,27 @@ namespace Domain.User
 {
     public class UserRoot : AggregateRoot
     {
-        public Name Name { get { return _state.UserName; } }
-        private readonly UserState _state;
-        internal UserRoot(Guid? id = null, UserState state = null)
+        public Name UserName { get; private set; }
+        public Name LastName { get; private set; }
+        public PositionType Position { get; private set; }
+        
+        internal UserRoot(Guid? id = null)
         {
-            Id = id.HasValue? id.Value: Guid.NewGuid();
-            _state = state ?? new UserState();
+            Id = id.HasValue? id.Value: Guid.NewGuid();            
         }
 
         internal void Initialize(string userName, string lastName, PositionType position)
         {
+            UserName = Name.Create(userName);
+            LastName = Name.Create(lastName);
+            Position = position;
+
             AddDomainEvent(new UserCreated(userName, lastName, this.Id, position));
         }
 
         public void UpdateUserName(Name name)
         {
+            UserName = name;
             AddDomainEvent(new UserNameUpdated(name.Value, this.Id));
         }       
     }

@@ -7,8 +7,8 @@ namespace Domain.User.Handlers
 {
     public class UserNameUpdatedEventHandler : AsyncNotificationHandler<UserNameUpdated>
     {
-        private IRdbmsRepository _repo;
-        public UserNameUpdatedEventHandler(IRdbmsRepository repo)
+        private IUserRepository _repo;
+        public UserNameUpdatedEventHandler(IUserRepository repo)
         {
             _repo = repo;
         }
