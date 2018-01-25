@@ -5,6 +5,6 @@ namespace SharedKernel.Domain
 {
     public interface IAggregateFactory<T>
     {
-        T RestoreBalance(Guid id, IEnumerable<object> events = null);
+        T Restore(Guid id, IEnumerable<object> events = null);
     }
 }

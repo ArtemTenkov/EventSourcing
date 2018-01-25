@@ -27,7 +27,7 @@ namespace Infrastructure.EventSource
             var deserializedEvents = 
                 dbEvents.Select(e => new MapperGeneric().Map(e));
 
-            var aggregate = _aggregateFactory.RestoreBalance(id, deserializedEvents);
+            var aggregate = _aggregateFactory.Restore(id, deserializedEvents);
             return aggregate;
         }
 
