@@ -1,5 +1,6 @@
 ﻿using Domain.User.Events;
 using SharedKernel.Domain;
+using SharedKernel.Domain.SharedEvents;
 using SharedKernel.Enums;
 using SharedKernel.ValueObjects;
 using System;

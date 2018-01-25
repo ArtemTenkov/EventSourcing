@@ -2,6 +2,7 @@
 using Domain.User.Events;
 using MediatR;
 using SharedKernel;
+using SharedKernel.Domain.SharedEvents;
 
 namespace Domain.User.Handlers
 {

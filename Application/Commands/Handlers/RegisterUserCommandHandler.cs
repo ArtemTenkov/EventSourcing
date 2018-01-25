@@ -6,6 +6,7 @@ using SharedKernel;
 
 namespace Application.Commands.Handlers
 {
+    //NB! Once the user registered - create account
     public class RegisterUserCommandHandler : AsyncRequestHandler<RegisterUser, RegisterUserResponse>
     {
         private IUserRepository _userRepository { get; }

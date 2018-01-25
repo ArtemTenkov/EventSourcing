@@ -19,6 +19,12 @@ namespace Domain.Balance
         public override void Modify(object @event) =>
             RedirectToWhen.InvokeEventOptional(this, @event);
 
+        public void When(AccountCreated @event)
+        {
+            UserGuid = @event.UserId;
+            AccountStatus = AccountStatus.Pending;
+        }
+
         public void When(BalanceIncreased @event)
         {
 

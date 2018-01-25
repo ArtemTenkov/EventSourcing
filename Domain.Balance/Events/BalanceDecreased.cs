@@ -1,6 +1,8 @@
-﻿namespace Domain.Balance.Events
+﻿using SharedKernel.Domain;
+
+namespace Domain.Balance.Events
 {
-    public class BalanceDecreased
+    public class BalanceDecreased : IDomainEvent
     {
     }
 }

@@ -14,6 +14,11 @@ namespace Domain.Balance
             _state = state ?? new AccountState();
         }
 
+        public void Initialize()
+        {            
+            AddDomainEvent(new AccountCreated(Id));
+        }
+
         //Replace with arguments: user, buyer, 
         public void Withdraw(Amount amount)
         {

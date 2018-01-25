@@ -11,6 +11,7 @@ namespace Domain.Balance
         public AggregateRoot CreateNewBalance()
         {
             var balance = new AccountRoot();
+            balance.Initialize();
             return balance;
         }
 

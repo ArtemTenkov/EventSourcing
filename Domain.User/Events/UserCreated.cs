@@ -1,8 +1,7 @@
-﻿using SharedKernel.Domain;
-using SharedKernel.Enums;
+﻿using SharedKernel.Enums;
 using System;
 
-namespace Domain.User.Events
+namespace SharedKernel.Domain.SharedEvents
 {
     public class UserCreated : IDomainEvent
     {
