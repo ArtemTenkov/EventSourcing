@@ -1,13 +1,14 @@
-﻿using System.Threading.Tasks;
-using Application.Commands.Responses;
+﻿using System;
+using System.Threading.Tasks;
 using Domain.User;
 using MediatR;
 using SharedKernel;
+using SharedKernel.FlowControl;
 
 namespace Application.Commands.Handlers
 {
     //NB! Once the user registered - create account
-    public class RegisterUserHandler : AsyncRequestHandler<RegisterUser, RegisterUserResponse>
+    public class RegisterUserHandler : AsyncRequestHandler<RegisterUser, Result<Guid>>
     {
         private IUserRepository _userRepository { get; }
         private UserFactory _userFactory { get; }
@@ -17,13 +18,13 @@ namespace Application.Commands.Handlers
             _userRepository = userRepository;
             _userFactory = userFactory;
         }
-        protected override async Task<RegisterUserResponse> HandleCore(RegisterUser command)
+        protected override async Task<Result<Guid>> HandleCore(RegisterUser command)
         {
             var user = _userFactory
                 .CreateNew(command.UserName, command.LastName, command.Position);
             await _userRepository.AddUser(user.Id, user.UserName.Value, user.LastName.Value);
 
-            return new RegisterUserResponse(string.Empty);
+            return Result.Ok(user.Id);
         }
     }   
 }

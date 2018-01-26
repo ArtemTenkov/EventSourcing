@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Application;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
@@ -11,6 +9,17 @@ namespace Api.Controllers
     [Route("api/Account")]
     public class AccountController : Controller
     {
+        IAccountService _accountService;
+        public AccountController(IAccountService accountService)
+        {
+            _accountService = accountService;
+        }
 
+        [Route("unlock")]
+        [HttpPost]
+        public async Task UnlockAccount(Guid accountId)
+        {
+            await _accountService.UnlockAccount(accountId);
+        }
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using System.Linq;
-using SharedKernel.Domain;
 
 namespace SharedKernel
 {
@@ -14,13 +13,11 @@ namespace SharedKernel
 
         static class Cache<T>
         {
-            // ReSharper disable StaticFieldInGenericType
             public static readonly IDictionary<Type, MethodInfo> Dict = typeof(T)
                 .GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
                 .Where(m => m.Name == "When")
                 .Where(m => m.GetParameters().Length == 1)
                 .ToDictionary(m => m.GetParameters().First().ParameterType, m => m);
-            // ReSharper restore StaticFieldInGenericType
         }
 
         [DebuggerNonUserCode]
@@ -30,8 +27,6 @@ namespace SharedKernel
             var type = @event.GetType();
             if (!Cache<T>.Dict.TryGetValue(type, out info))
             {
-                // we don't care if state does not consume events
-                // they are persisted anyway
                 return;
             }
             try

@@ -1,17 +1,18 @@
 ﻿using Application.Commands;
-using Application.Commands.Responses;
 using Application.Queries;
 using MediatR;
 using SharedKernel.Domain.IntegrationEvents;
 using SharedKernel.Enums;
+using SharedKernel.FlowControl;
 using SharedKernel.ValueObjects;
+using System;
 using System.Threading.Tasks;
 
 namespace Application
 {
     public interface IUserService
     {        
-        Task<RegisterUserResponse> RegisterUser(string userName, string lastName, PositionType position);
+        Task<Result<Guid>> RegisterUser(string userName, string lastName, PositionType position);
         Task<bool> UpdateUserName(string newUserName, string lastName);
         Task<string> PromoteUser(string lastName, PositionType newPosition);
         Task<string> UnregisterUser(string lastName);
@@ -35,11 +36,11 @@ namespace Application
             return updatedSuccesfully;
         }
 
-        public async Task<RegisterUserResponse> RegisterUser(string userName, string lastName, PositionType position)
+        public async Task<Result<Guid>> RegisterUser(string userName, string lastName, PositionType position)
         {
             var registrationResult = await _mediator.Send(new RegisterUser(userName, lastName, position));
             if (string.IsNullOrEmpty(registrationResult.ErrorMessage))
-               await _mediator.Publish(new UserRegistered());
+               await _mediator.Publish(new UserRegistered(registrationResult.Value));
 
             return registrationResult;
         }
@@ -55,11 +56,13 @@ namespace Application
 
         public async Task<string> UnregisterUser(string lastName)
         {
-            var successfullyUnregistered = await _mediator.Send(new UnregisterUser());
-            if (successfullyUnregistered)
-                await _mediator.Publish(new UserUnregistered());
+            var unregisteredUserId = await _mediator.Send(new UnregisterUser(lastName));
+            if (unregisteredUserId != null)
+                await _mediator.Publish(new UserUnregistered(unregisteredUserId));
 
             return string.Empty;
         }
+
+
     }
 }

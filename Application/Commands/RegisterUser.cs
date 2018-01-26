@@ -1,10 +1,11 @@
-﻿using Application.Commands.Responses;
-using MediatR;
+﻿using MediatR;
 using SharedKernel.Enums;
+using SharedKernel.FlowControl;
+using System;
 
 namespace Application.Commands
 {
-    public class RegisterUser : IRequest<RegisterUserResponse>
+    public class RegisterUser : IRequest<Result<Guid>>
     {
         public string UserName { get; }
         public string LastName { get; }

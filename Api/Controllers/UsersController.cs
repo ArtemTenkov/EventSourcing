@@ -10,16 +10,17 @@ namespace Api.Controllers
     [Route("api/users")]
     public class UsersController : Controller
     {
-        IUserService _testService;
+        IUserService _userService;
         public UsersController(IUserService testService)
         {   
-            _testService = testService;
+            _userService = testService;
         }
+
         [HttpPost]
         [Route("new")]
-        public async Task<IActionResult> Post(string userName, string lastName)
+        public async Task<IActionResult> Add(string userName, string lastName)
         {
-            var user = await _testService.RegisterUser(userName, lastName, PositionType.NotSet);
+            var user = await _userService.RegisterUser(userName, lastName, PositionType.NotSet);
             return new ObjectResult(user)
             {
                 StatusCode = StatusCodes.Status201Created
@@ -28,12 +29,36 @@ namespace Api.Controllers
 
         [HttpPatch]
         [Route("update")]
-        public async Task<IActionResult> Put(string newUserName, string lastName)
+        public async Task<IActionResult> Update(string newUserName, string lastName)
         {
-            var nameUpdated = await _testService.UpdateUserName(newUserName, lastName);            
-            return new ObjectResult(nameUpdated)
+            var success = await _userService.UpdateUserName(newUserName, lastName);            
+            return new ObjectResult(success)
             {
-                StatusCode = StatusCodes.Status200OK
+                StatusCode = success ? StatusCodes.Status200OK : StatusCodes.Status500InternalServerError
+            };
+        }
+
+        [HttpPut]
+        [Route("promote")]
+        public async Task<IActionResult> Promote(string lastName, int newPosition)
+        {
+            var position = PositionType.Parse(newPosition);
+            var promotionError = await _userService.PromoteUser(lastName, position);
+            return new ObjectResult(promotionError)
+            {
+                StatusCode = string.IsNullOrEmpty(promotionError) ? StatusCodes.Status200OK : StatusCodes.Status500InternalServerError
+            };
+        }
+
+
+        [HttpDelete]
+        [Route("promote")]
+        public async Task<IActionResult> Unregister(string lastName)
+        {
+            var updateError = await _userService.UnregisterUser(lastName);
+            return new ObjectResult(updateError)
+            {
+                StatusCode = string.IsNullOrEmpty(updateError)? StatusCodes.Status200OK : StatusCodes.Status500InternalServerError
             };
         }
     }

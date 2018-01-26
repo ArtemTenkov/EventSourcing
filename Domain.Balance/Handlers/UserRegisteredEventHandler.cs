@@ -12,9 +12,10 @@ namespace Domain.Balance.Handlers
         {
             _repository = repository;
         }
-        protected override async Task HandleCore(UserRegistered notification)
+        protected override async Task HandleCore(UserRegistered @event)
         {
-            var balanceRoot = new AccountFactory().CreateNewBalance();
+            var balanceRoot = new AccountFactory()
+                .CreateNewBalance(@event.UserId);
             await _repository.Save(balanceRoot);
         }
     }
