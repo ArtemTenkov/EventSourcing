@@ -25,6 +25,21 @@ namespace Domain.Balance
             AccountStatus = AccountStatus.Pending;
         }
 
+        public void When(AccountVerified @event)
+        {            
+            AccountStatus = AccountStatus.Active;
+        }
+
+        public void When(AccountLocked @event)
+        {
+            AccountStatus = AccountStatus.Locked;
+        }
+
+        public void When(AccountUnlocked @event)
+        {
+            AccountStatus = AccountStatus.Active;
+        }   
+
         public void When(BalanceIncreased @event)
         {
 

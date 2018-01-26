@@ -8,14 +8,14 @@ namespace Domain.Balance
 {
     public class AccountFactory : IAggregateFactory<AccountRoot>
     {
-        public AggregateRoot CreateNewBalance()
+        public AccountRoot CreateNewBalance(Guid userId)
         {
             var balance = new AccountRoot();
-            balance.Initialize();
+            balance.Initialize(userId);
             return balance;
         }
 
-        public AccountRoot RestoreBalance(Guid id, IEnumerable<object> events = null)
+        public AccountRoot Restore(Guid id, IEnumerable<object> events = null)
         {
             var aggregate = new AccountRoot(id, new AccountState(events));
             return aggregate;

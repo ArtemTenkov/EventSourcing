@@ -39,7 +39,7 @@ namespace Application
         public async Task<Result<Guid>> RegisterUser(string userName, string lastName, PositionType position)
         {
             var registrationResult = await _mediator.Send(new RegisterUser(userName, lastName, position));
-            if (string.IsNullOrEmpty(registrationResult.ErrorMessage))
+            if (registrationResult.IsSuccess)
                await _mediator.Publish(new UserRegistered(registrationResult.Value));
 
             return registrationResult;

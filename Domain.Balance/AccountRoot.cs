@@ -14,9 +14,9 @@ namespace Domain.Balance
             _state = state ?? new AccountState();
         }
 
-        public void Initialize()
+        public void Initialize(Guid userId)
         {            
-            AddDomainEvent(new AccountCreated(Id));
+            AddDomainEvent(new AccountCreated(userId));
         }
 
         //Replace with arguments: user, buyer, 
@@ -30,6 +30,21 @@ namespace Domain.Balance
             //Transaction entity should isolate appropriate logic and validation
             var transaction = new AccountFactory().CreateTransaction(Id, amount);
             AddDomainEvent(new BalanceIncreased(transaction.Id, transaction.GetAmount));
+        }
+
+        public void VerifyIdentity()
+        {
+            AddDomainEvent(new AccountVerified(Id));
+        }
+
+        public void Lock(string reason)
+        {
+            AddDomainEvent(new AccountLocked(Id, reason));
+        }
+
+        public void UnLock(string reason)
+        {
+            AddDomainEvent(new AccountUnlocked(Id, reason));
         }
     }
 }
