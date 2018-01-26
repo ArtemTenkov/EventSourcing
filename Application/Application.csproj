@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="JustSaying" Version="4.1.333" />
     <PackageReference Include="MediatR" Version="4.0.1" />
   </ItemGroup>
 

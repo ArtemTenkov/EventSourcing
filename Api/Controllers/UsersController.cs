@@ -52,7 +52,7 @@ namespace Api.Controllers
 
 
         [HttpDelete]
-        [Route("promote")]
+        [Route("unregister")]
         public async Task<IActionResult> Unregister(string lastName)
         {
             var updateError = await _userService.UnregisterUser(lastName);
