@@ -1,6 +1,8 @@
-﻿namespace SharedKernel.Domain.IntegrationEvents
+﻿using JustSaying.Models;
+
+namespace SharedKernel.Domain.IntegrationEvents
 {
-    public class UserPromoted : IIntegrationEvent
+    public class UserPromoted : Message, IIntegrationEvent
     {
 
     }

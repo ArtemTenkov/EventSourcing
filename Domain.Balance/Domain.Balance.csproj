@@ -12,4 +12,9 @@
     <Folder Include="ValueObjects\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="JustSaying" Version="5.0.0-rc1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.0" />
+  </ItemGroup>
+
 </Project>

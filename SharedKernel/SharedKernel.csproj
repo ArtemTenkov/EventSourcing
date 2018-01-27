@@ -5,10 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JustSaying.Models" Version="2.0.0.269" />
+    <PackageReference Include="JustSaying" Version="5.0.0-rc1" />
+    <PackageReference Include="JustSaying.Models" Version="5.0.0-rc1" />
     <PackageReference Include="MediatR" Version="4.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="StructureMap" Version="4.6.1" />
+    <PackageReference Include="StructureMap.Microsoft.DependencyInjection" Version="1.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Domain\IntegrationEvents\Handlers\" />
   </ItemGroup>
 
 </Project>

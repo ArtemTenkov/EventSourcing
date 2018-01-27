@@ -1,9 +1,7 @@
-﻿using Amazon;
-using Amazon.Runtime;
+﻿
 using User.Application.Commands;
 using User.Application.Queries;
 using JustSaying;
-using JustSaying.Messaging;
 using JustSaying.AwsTools;
 using MediatR;
 using SharedKernel.Domain.IntegrationEvents;
@@ -12,8 +10,8 @@ using SharedKernel.FlowControl;
 using SharedKernel.ValueObjects;
 using System;
 using System.Threading.Tasks;
-using User.Application.Commands;
-using User.Application.Queries;
+using Amazon.Runtime;
+using Amazon;
 
 namespace User.Application
 {
@@ -29,16 +27,20 @@ namespace User.Application
     public class UserService : IUserService
     {
         IMediator _mediator;
+        IHaveFulfilledPublishRequirements _publisher;
         public UserService(IMediator mediator)
         {
             _mediator = mediator;
+
             CreateMeABus.DefaultClientFactory = () =>
             new DefaultAwsClientFactory(
                 new BasicAWSCredentials(
                     "",
                     ""));
 
-            var publisher = CreateMeABus.InRegion(RegionEndpoint.SAEast1.SystemName);
+            _publisher = CreateMeABus.WithLogging(new Microsoft.Extensions.Logging.LoggerFactory())
+                .InRegion(RegionEndpoint.SAEast1.SystemName)
+                .WithSnsMessagePublisher<UserRegistered>();
         }
 
         public async Task<bool> UpdateUserName(string newUserName, string lastName)
@@ -54,7 +56,7 @@ namespace User.Application
         {
             var registrationResult = await _mediator.Send(new RegisterUser(userName, lastName, position));
             if (registrationResult.IsSuccess)
-               await _mediator.Publish(new UserRegistered(registrationResult.Value));
+                await _publisher.PublishAsync(new UserRegistered(registrationResult.Value));
 
             return registrationResult;
         }
@@ -76,7 +78,5 @@ namespace User.Application
 
             return string.Empty;
         }
-
-
     }
 }

@@ -1,22 +1,25 @@
 ﻿using System.Threading.Tasks;
-using MediatR;
+using JustSaying.Messaging.MessageHandling;
 using SharedKernel;
 using SharedKernel.Domain.IntegrationEvents;
 
 namespace Domain.Balance.Handlers
 {
-    public class UserRegisteredEventHandler : AsyncNotificationHandler<UserRegistered>
+    public class UserRegisteredEventHandler : IHandlerAsync<UserRegistered>
     {
         IEventRepository<AccountRoot> _repository;
         public UserRegisteredEventHandler(IEventRepository<AccountRoot> repository)
         {
-            _repository = repository;
+            _repository = repository;           
         }
-        protected override async Task HandleCore(UserRegistered @event)
+
+        public async Task<bool> Handle(UserRegistered @event)
         {
             var balanceRoot = new AccountFactory()
                 .CreateNewBalance(@event.UserId);
             await _repository.Save(balanceRoot);
-        }
+
+            return true;
+        }       
     }
 }

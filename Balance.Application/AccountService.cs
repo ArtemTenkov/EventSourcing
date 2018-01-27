@@ -1,5 +1,4 @@
 ﻿using Balance.Application.Commands;
-using Balance.Application.Commands;
 using MediatR;
 using System;
 using System.Threading.Tasks;

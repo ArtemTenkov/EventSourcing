@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Net;
+using Amazon;
 using Balance.Infrastructure.Models;
+using Domain.Balance;
+using JustSaying;
+using JustSaying.AwsTools;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -11,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SharedKernel;
 using SharedKernel.Decorators;
 using SharedKernel.Domain;
+using SharedKernel.Domain.IntegrationEvents;
 using StructureMap;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -49,6 +54,8 @@ namespace Balance.Api
                 // Register stuff in container, using the StructureMap APIs...
                 config.Scan(_ =>
                 {
+                    _.AddAllTypesOf(typeof(JustSaying.Messaging.MessageHandling.IHandlerAsync<>));
+
                     config.For<IMediator>().Use<Mediator>();
                     _.AddAllTypesOf(typeof(IRequestHandler<,>));
                     _.AddAllTypesOf(typeof(INotificationHandler<>));
@@ -68,10 +75,23 @@ namespace Balance.Api
                     _.WithDefaultConventions();
                 });
 
-
                 //Populate the container using the service collection
                 config.Populate(services);
             });
+
+            CreateMeABus.DefaultClientFactory = () =>
+          new DefaultAwsClientFactory(
+              new Amazon.Runtime.BasicAWSCredentials(
+                  "",
+                  ""));
+
+            CreateMeABus
+            .WithLogging(new Microsoft.Extensions.Logging.LoggerFactory())
+           .InRegion(RegionEndpoint.SAEast1.SystemName)
+           .WithSqsTopicSubscriber()
+           .IntoQueue("CustomerOrders")
+           .WithMessageHandler<UserRegistered>(new StructureMapHandlerResolver(container))
+           .StartListening();
 
             return container.GetInstance<IServiceProvider>();
 
@@ -111,4 +131,8 @@ namespace Balance.Api
             });
         }
     }
+
+    
+
+    
 }
