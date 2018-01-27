@@ -6,7 +6,19 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "80"
+  user.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+  balance.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
 networks:
   default:
     external:
       name: nat
+
+

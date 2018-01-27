@@ -6,3 +6,17 @@ services:
     build:
       context: .
       dockerfile: Api\Dockerfile
+
+  user.api:
+    image: user.api
+    build:
+      context: .
+      dockerfile: ..\User.Api\Dockerfile
+
+
+  balance.api:
+    image: balance.api
+    build:
+      context: .
+      dockerfile: Balance.Api\Dockerfile
+

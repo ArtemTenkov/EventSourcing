@@ -1,8 +1,9 @@
-﻿using System;
+﻿using JustSaying.Models;
+using System;
 
 namespace SharedKernel.Domain.IntegrationEvents
 {
-    public class UserRegistered : IIntegrationEvent
+    public class UserRegistered : Message, IIntegrationEvent
     {
         public Guid UserId;
         public UserRegistered(Guid userId)
