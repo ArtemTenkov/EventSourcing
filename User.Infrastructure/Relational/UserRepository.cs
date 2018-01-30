@@ -10,7 +10,7 @@ namespace User.Infrastructure.Relational
 {
     public class UserRepository : IUserRepository
     {
-        protected QueryContext _dbContext;
+        private QueryContext _dbContext;
         public UserRepository(QueryContext dbContext)
         {
             _dbContext = dbContext;

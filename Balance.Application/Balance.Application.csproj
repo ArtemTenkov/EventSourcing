@@ -134,16 +134,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountService.cs" />
+    <Compile Include="Queries\Handlers\GetTransactionsListHandler.cs" />
     <Compile Include="Commands\Handlers\UnlockAccountHandler.cs" />
     <Compile Include="Commands\UnlockAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\GetTransactionsList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Queries\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Domain.Balance\Domain.Balance.csproj">
       <Project>{9157DE82-1A74-425A-BAF4-CDB502DE8FB7}</Project>

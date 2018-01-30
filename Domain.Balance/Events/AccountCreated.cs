@@ -7,9 +7,10 @@ namespace Domain.Balance.Events
     {
         public Guid UserId { get; private set; }
         public DateTime CreationDateTime { get; private set; }
-        public AccountCreated(Guid userId)
+        public AccountCreated(Guid userId, DateTime creationDateTime)
         {
             UserId = userId;
+            CreationDateTime = creationDateTime;
         }
     }
 }

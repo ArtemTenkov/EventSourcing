@@ -16,7 +16,7 @@ namespace Domain.Balance
 
         public void Initialize(Guid userId)
         {            
-            AddDomainEvent(new AccountCreated(userId));
+            AddDomainEvent(new AccountCreated(userId, DateTime.Now));
         }
 
         //Replace with arguments: user, buyer, 

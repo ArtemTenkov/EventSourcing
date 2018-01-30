@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Balance.Application;
-using Balance.Application;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Balance.Api.Controllers
@@ -21,6 +21,17 @@ namespace Balance.Api.Controllers
         public async Task UnlockAccount(Guid accountId)
         {
             await _accountService.UnlockAccount(accountId);
+        }
+
+        [Route("all")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllTransactions(Guid userId)
+        {
+            var transactions = await _accountService.GetAllTransactions(userId);
+            return new ObjectResult(transactions)
+            {
+                StatusCode = StatusCodes.Status200OK
+            };
         }
     }
 }
