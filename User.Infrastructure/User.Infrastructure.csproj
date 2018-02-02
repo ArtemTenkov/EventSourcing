@@ -258,7 +258,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EventSource\EventRepository.cs" />
-    <Compile Include="EventSource\UserEventRepository.cs" />
     <Compile Include="Mapppers\MapperGeneric.cs" />
     <Compile Include="Models\EventSourcing.cs" />
     <Compile Include="Models\EventSourcingContext.cs" />

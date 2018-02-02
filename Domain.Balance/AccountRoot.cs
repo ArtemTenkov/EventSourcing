@@ -1,7 +1,9 @@
 ﻿using Domain.Balance.Events;
 using SharedKernel.Domain;
+using SharedKernel.Enums;
 using SharedKernel.ValueObjects;
 using System;
+using System.Collections.Generic;
 
 namespace Domain.Balance
 {
@@ -14,6 +16,11 @@ namespace Domain.Balance
             _state = state ?? new AccountState();
         }
 
+        public List<Transaction> GetTransactions => _state.Transactions;
+        public Amount GetAmount => _state.Amount;
+        public Guid GetUserGuid => _state.UserGuid;
+        public AccountStatus GetAccountStatus => _state.AccountStatus;
+
         public void Initialize(Guid userId)
         {            
             AddDomainEvent(new AccountCreated(userId, DateTime.Now));
@@ -23,13 +30,14 @@ namespace Domain.Balance
         public void Withdraw(Amount amount)
         {
             var transaction = new AccountFactory().CreateTransaction(Id, amount);
+            AddDomainEvent(new BalanceDecreased(transaction.Id, transaction.GetAmount.Value));
         }
 
         public void Deposit(Amount amount)
         {
             //Transaction entity should isolate appropriate logic and validation
             var transaction = new AccountFactory().CreateTransaction(Id, amount);
-            AddDomainEvent(new BalanceIncreased(transaction.Id, transaction.GetAmount));
+            AddDomainEvent(new BalanceIncreased(transaction.Id, transaction.GetAmount.Value));
         }
 
         public void VerifyIdentity()

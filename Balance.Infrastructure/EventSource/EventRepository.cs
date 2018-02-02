@@ -1,25 +1,27 @@
 ﻿using Balance.Infrastructure.Mapppers;
 using Balance.Infrastructure.Models;
+using Domain.Balance;
 using SharedKernel;
 using SharedKernel.Domain;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Balance.Infrastructure.EventSource
 {
-    public class EventRepository<T> : IEventRepository<T>
+    public class EventRepository : IEventRepository<AccountRoot>
     {
         protected EventSourcingContext _dbContext;
-        public IAggregateFactory<T> _aggregateFactory { get; }
+        public IAggregateFactory<AccountRoot> _aggregateFactory { get; }
         
-        public EventRepository(IAggregateFactory<T> aggregateFactory,             
+        public EventRepository(IAggregateFactory<AccountRoot> aggregateFactory,             
             EventSourcingContext dbContext)
         {
             _aggregateFactory = aggregateFactory;
             _dbContext = dbContext;           
         }
-        public T GetById(Guid id)
+        public AccountRoot GetById(Guid id)
         {
             var dbEvents = _dbContext.EventSourcing.Where(evnt => evnt.AggregateId == id);
 
@@ -44,6 +46,25 @@ namespace Balance.Infrastructure.EventSource
 
             await _dbContext.EventSourcing.AddRangeAsync(eventsToSave);
             _dbContext.SaveChanges();           
+        }
+
+        public IEnumerable<AccountRoot> GetAggregates()
+        {
+            var aggregates = new List<AccountRoot>();
+
+            _dbContext.EventSourcing
+                .Select(@event => @event.AggregateId)
+                .Distinct()
+                .ToList()
+                .ForEach(id => 
+                {
+                    var aggregate = GetById(id);
+                    if (aggregate == null) return;
+
+                    aggregates.Add(aggregate);
+                });
+
+            return aggregates;
         }
     }
 }

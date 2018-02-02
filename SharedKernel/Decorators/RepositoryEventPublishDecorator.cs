@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MediatR;
 using SharedKernel.Domain;
@@ -14,6 +15,11 @@ namespace SharedKernel.Decorators
         {
             _mediator = mediator;
             _eventRepository = eventRepository;
+        }
+
+        public IEnumerable<T> GetAggregates()
+        {
+            return _eventRepository.GetAggregates();
         }
 
         public T GetById(Guid id)

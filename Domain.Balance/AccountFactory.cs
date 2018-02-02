@@ -17,6 +17,9 @@ namespace Domain.Balance
 
         public AccountRoot Restore(Guid id, IEnumerable<object> events = null)
         {
+            if (id == Guid.Empty)
+                return null;
+
             var aggregate = new AccountRoot(id, new AccountState(events));
             return aggregate;
         }

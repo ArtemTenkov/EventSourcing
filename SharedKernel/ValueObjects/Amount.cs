@@ -4,9 +4,10 @@ namespace SharedKernel.ValueObjects
 {
     public class Amount
     {
-        public double Value { get; private set; }
+        public decimal Value { get; private set; }
+        public static Amount NotSet = new Amount(0);
 
-        private Amount(double value)
+        private Amount(decimal value)
         {
             if (value < 0)
                 throw new Exception($"Amount should be greater than zero ({value}).");
@@ -14,7 +15,7 @@ namespace SharedKernel.ValueObjects
             Value = value;
         }
 
-        public static Amount Create(double value)
+        public static Amount Create(decimal value)
         {
             return new Amount(value);
         }

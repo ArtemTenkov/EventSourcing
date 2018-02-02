@@ -134,6 +134,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountService.cs" />
+    <Compile Include="Commands\DoDeposit.cs" />
+    <Compile Include="Commands\DoWithdraw.cs" />
+    <Compile Include="Commands\Handlers\DoDepositHandler.cs" />
+    <Compile Include="Commands\Handlers\DoWithdrawHandler.cs" />
+    <Compile Include="Queries\GetAllAccounts.cs" />
+    <Compile Include="Queries\Handlers\GetAllAccountsHandler.cs" />
     <Compile Include="Queries\Handlers\GetTransactionsListHandler.cs" />
     <Compile Include="Commands\Handlers\UnlockAccountHandler.cs" />
     <Compile Include="Commands\UnlockAccount.cs" />
@@ -147,6 +153,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Balance.Infrastructure\Balance.Infrastructure.csproj">
+      <Project>{F98B401B-78F9-4C37-B2A0-AF1D56106F1B}</Project>
+      <Name>Balance.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain.Balance\Domain.Balance.csproj">
       <Project>{9157DE82-1A74-425A-BAF4-CDB502DE8FB7}</Project>
       <Name>Domain.Balance</Name>

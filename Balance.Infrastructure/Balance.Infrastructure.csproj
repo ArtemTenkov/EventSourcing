@@ -260,7 +260,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventSource\AccountEventRepository.cs" />
     <Compile Include="EventSource\EventRepository.cs" />
     <Compile Include="Mapppers\MapperGeneric.cs" />
     <Compile Include="Models\EventSourcing.cs" />

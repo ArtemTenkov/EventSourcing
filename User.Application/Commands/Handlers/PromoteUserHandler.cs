@@ -1,11 +1,16 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
+using SharedKernel.FlowControl;
 
 namespace User.Application.Commands.Handlers
 {
-    public class PromoteUserHandler : AsyncRequestHandler<PromoteUser, bool>
+    public class PromoteUserHandler : AsyncRequestHandler<PromoteUser, Result>
     {
-        protected override async Task<bool> HandleCore(PromoteUser command)
+        public PromoteUserHandler()
+        {
+
+        }
+        protected override async Task<Result> HandleCore(PromoteUser command)
         {
             throw new System.NotImplementedException();
         }

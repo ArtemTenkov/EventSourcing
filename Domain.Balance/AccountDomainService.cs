@@ -7,7 +7,7 @@ namespace Domain.Balance
     {
         Task PayRegistrationBonus(AccountRoot accountRoot);
     }
-    public class AccountService : IBalanceService
+    public class AccountDomainService : IBalanceService
     {
         public async Task PayRegistrationBonus(AccountRoot accountRoot)
         {

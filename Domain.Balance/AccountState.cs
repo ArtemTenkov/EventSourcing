@@ -11,9 +11,9 @@ namespace Domain.Balance
     public class AccountState : StateBase
     {
         public Guid UserGuid { get; private set; }
-        public AccountStatus AccountStatus { get; private set; }
-        public Amount Amount { get; private set; }
-        public List<Transaction> Transactions { get; private set; }
+        public AccountStatus AccountStatus { get; private set; } = AccountStatus.NotSet;
+        public Amount Amount { get; private set; } = Amount.NotSet;
+        public List<Transaction> Transactions { get; private set; } = new List<Transaction>();
 
         public void SetState(AccountStatus status) => AccountStatus = status;
         public override void Modify(object @event) =>
@@ -26,7 +26,7 @@ namespace Domain.Balance
         }
 
         public void When(AccountVerified @event)
-        {            
+        {
             AccountStatus = AccountStatus.Active;
         }
 
@@ -38,16 +38,20 @@ namespace Domain.Balance
         public void When(AccountUnlocked @event)
         {
             AccountStatus = AccountStatus.Active;
-        }   
+        }
 
         public void When(BalanceIncreased @event)
         {
-
+            var amount = Amount.Create(@event.Amount);
+            this.Transactions.Add(new Transaction(UserGuid, amount, DateTime.Now, TransactionStatusCode.Settled));
+            this.Amount += amount;
         }
 
         public void When(BalanceDecreased @event)
         {
-
+            var amount = Amount.Create(@event.Amount);
+            this.Transactions.Add(new Transaction(UserGuid, amount, DateTime.Now, TransactionStatusCode.Settled));
+            this.Amount -= amount;
         }
 
         public AccountState(IEnumerable<object> events = null)
