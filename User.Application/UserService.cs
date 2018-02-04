@@ -63,8 +63,8 @@ namespace User.Application
 
         public async Task<string> PromoteUser(string lastName, PositionType newPosition)
         {
-            var succesfullyPromoted = await _mediator.Send(new PromoteUser());
-            if (succesfullyPromoted)
+            var succesfullyPromoted = await _mediator.Send(new PromoteUser(lastName, newPosition));
+            if (succesfullyPromoted.IsSuccess)
                 await _mediator.Publish(new UserPromoted());
 
             return string.Empty;
