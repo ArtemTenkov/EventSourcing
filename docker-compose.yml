@@ -20,3 +20,10 @@ services:
       context: .
       dockerfile: Balance.Api\Dockerfile
 
+
+  balance.read.api:
+    image: balance.read.api
+    build:
+      context: .
+      dockerfile: Balance.Read.Api\Dockerfile
+

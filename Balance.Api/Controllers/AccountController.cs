@@ -16,11 +16,11 @@ namespace Balance.Api.Controllers
             _accountService = accountService;
         }
 
-        [Route("unlock")]
-        [HttpPost]
-        public async Task UnlockAccount(Guid accountId)
+        [Route("getaccountid")]
+        [HttpGet]
+        public async Task<Guid> GetAccountIdByUserId(Guid userId)
         {
-            await _accountService.UnlockAccount(accountId);
+            return await _accountService.GetAccountIdByUserId(userId);
         }
 
         [Route("deposit")]
@@ -35,28 +35,6 @@ namespace Balance.Api.Controllers
         public async Task Withdraw(Guid accountId, decimal amount)
         {
             await _accountService.Withdraw(accountId, amount);
-        }
-
-        [Route("accounts")]
-        [HttpGet]
-        public async Task<IActionResult> GetAllAccounts()
-        {
-            var ids = await _accountService.GetAllAccountIds();
-            return new ObjectResult(ids)
-            {
-                StatusCode = StatusCodes.Status200OK
-            };
-        }
-
-        [Route("transactions")]
-        [HttpGet]
-        public async Task<IActionResult> GetAllTransactions(Guid userId)
-        {
-            var transactions = await _accountService.GetAllTransactions(userId);
-            return new ObjectResult(transactions)
-            {
-                StatusCode = StatusCodes.Status200OK
-            };
-        }
+        }        
     }
 }

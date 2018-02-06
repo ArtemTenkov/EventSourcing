@@ -7,10 +7,12 @@ namespace Domain.Balance.Events
     {
         public Guid TransactionId { get; }
         public decimal Amount { get; }
-        public BalanceDecreased(Guid transactionId, decimal amount)
+        public Guid UserId { get; }
+        public BalanceDecreased(Guid transactionId, Guid userId, decimal amount)
         {
             TransactionId = transactionId;
             Amount = amount;
+            UserId = userId;
         }
     }
 }

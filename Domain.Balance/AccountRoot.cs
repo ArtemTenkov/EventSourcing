@@ -23,21 +23,23 @@ namespace Domain.Balance
 
         public void Initialize(Guid userId)
         {            
-            AddDomainEvent(new AccountCreated(userId, DateTime.Now));
+            AddDomainEvent(new AccountCreated(userId, Id, DateTime.Now));
         }
 
         //Replace with arguments: user, buyer, 
-        public void Withdraw(Amount amount)
+        public Transaction Withdraw(Amount amount)
         {
             var transaction = new AccountFactory().CreateTransaction(Id, amount);
-            AddDomainEvent(new BalanceDecreased(transaction.Id, transaction.GetAmount.Value));
+            AddDomainEvent(new BalanceDecreased(transaction.Id, GetUserGuid, transaction.GetAmount.Value));
+            return transaction;
         }
 
-        public void Deposit(Amount amount)
+        public Transaction Deposit(Amount amount)
         {
             //Transaction entity should isolate appropriate logic and validation
             var transaction = new AccountFactory().CreateTransaction(Id, amount);
-            AddDomainEvent(new BalanceIncreased(transaction.Id, transaction.GetAmount.Value));
+            AddDomainEvent(new BalanceIncreased(transaction.Id, GetUserGuid, transaction.GetAmount.Value));
+            return transaction;
         }
 
         public void VerifyIdentity()

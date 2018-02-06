@@ -1,5 +1,4 @@
 ﻿using System;
-using SharedKernel.Domain;
 using SharedKernel.Enums;
 using SharedKernel.ValueObjects;
 
